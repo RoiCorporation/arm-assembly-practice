@@ -1,2 +1,2 @@
-# arm-assembly-practice
+# ARM assembly practice repository
 Practice exercises to learn ARM assembly code.
