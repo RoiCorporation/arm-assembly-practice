@@ -18,12 +18,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y curl gpg
           curl "https://developer.arm.com/packages/arm-toolchains:ubuntu-24/noble/Release.key" | gpg --dearmor -o /usr/share/keyrings/obs-oss-arm-com.gpg
-          echo "deb [signed-by=/usr/share/keyrings/obs-oss-arm-com.gpg] https://developer.arm.com/packages/arm-toolchains:ubuntu-24/noble/ ./" | tee /etc/apt/sources.list.d/obs-oss-arm-com.list
-          apt update
-          apt install -y arm-toolchains-transition
-          apt update
-          apt install -y arm-toolchain-for-linux environment-modules
-
+          sudo echo "deb [signed-by=/usr/share/keyrings/obs-oss-arm-com.gpg] https://developer.arm.com/packages/arm-toolchains:ubuntu-24/noble/ ./" | tee /etc/apt/sources.list.d/obs-oss-arm-com.list
+          sudo apt update
+          sudo apt install -y arm-toolchains-transition
+          sudo apt update
+          sudo apt install -y arm-toolchain-for-linux environment-modules
 
       - name: Configure environment modules for ARM toolchain
         shell: bash
