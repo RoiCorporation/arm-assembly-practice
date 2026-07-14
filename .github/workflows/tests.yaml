@@ -15,15 +15,13 @@ jobs:
 
       - name: Install necessary dependencies
         run: |
-          sudo apt-get update
+          sudo apt update && sudo apt upgrade -y
           sudo apt-get install -y curl gpg
           curl "https://developer.arm.com/packages/arm-toolchains:ubuntu-24/noble/Release.key" | gpg --dearmor -o /usr/share/keyrings/obs-oss-arm-com.gpg
           sudo echo "deb [signed-by=/usr/share/keyrings/obs-oss-arm-com.gpg] https://developer.arm.com/packages/arm-toolchains:ubuntu-24/noble/ ./" | sudo tee /etc/apt/sources.list.d/obs-oss-arm-com.list
-          sudo apt update
-          apt-get upgrade
+          sudo apt update && sudo apt upgrade -y
           sudo apt install -y arm-toolchains-transition
-          sudo apt update
-          apt-get upgrade
+          sudo apt update && sudo apt upgrade -y
           sudo apt install -y arm-toolchain-for-linux environment-modules
 
       - name: Configure environment modules for ARM toolchain
