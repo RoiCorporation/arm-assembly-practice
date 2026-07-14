@@ -34,6 +34,11 @@ jobs:
       - name: 🧪 Run ARM assembly tests for all practice exercises
         shell: bash
         run: |
+
+          source /etc/profile.d/modules.sh
+          module use /opt/arm/modulefiles
+          module load atfl
+
           set -euo pipefail
           shopt -s nullglob
 
