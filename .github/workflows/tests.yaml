@@ -1,0 +1,56 @@
+name: ARM assembly practice exercises tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: ARM assembly exercises tests
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install necessary dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl gpg
+          curl "https://developer.arm.com/packages/arm-toolchains:ubuntu-24/noble/Release.key" | gpg --dearmor -o /usr/share/keyrings/obs-oss-arm-com.gpg
+          echo "deb [signed-by=/usr/share/keyrings/obs-oss-arm-com.gpg] https://developer.arm.com/packages/arm-toolchains:ubuntu-24/noble/ ./" | tee /etc/apt/sources.list.d/obs-oss-arm-com.list
+          apt update
+          apt install -y arm-toolchains-transition
+          apt update
+          apt install -y arm-toolchain-for-linux environment-modules
+
+
+      - name: Configure environment modules for ARM toolchain
+        shell: bash
+        run: |
+          source /etc/profile.d/modules.sh
+          module use /opt/arm/modulefiles
+          module load atfl
+
+      - name: 🧪 Run ARM assembly tests for all practice exercises
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+
+          cd practice_exercises
+
+          for d in */; do
+            folder_name=${d%/}
+
+            pushd "$d" >/dev/null
+
+            echo "🧪 Testing $folder_name exercise"
+
+            armclang "${folder_name}.s" test.c -o "${folder_name}"
+
+            popd >/dev/null
+                echo "✅ $folder_name test passed"
+
+          done
+          echo "✅ All tests passed!"

@@ -11,7 +11,8 @@ RUN apt install -y arm-toolchains-transition
 RUN apt update
 RUN apt install -y arm-toolchain-for-linux environment-modules
 
-# Set the default shell to bash and load the necessary modules
+# Set up environmental modules to make toolchain commands available from the
+# command line
 SHELL ["/bin/bash", "-c"]
 CMD ["bash", "-lc", "source /etc/profile.d/modules.sh && module use /opt/arm/modulefiles && module load atfl && exec bash"]
 
