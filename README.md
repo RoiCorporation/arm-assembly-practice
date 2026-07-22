@@ -1,3 +1,8 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)&emsp;[![ARM assembly practice exercises tests](https://github.com/RoiCorporation/arm-assembly-practice/actions/workflows/tests.yaml/badge.svg)](https://github.com/RoiCorporation/arm-assembly-practice/actions/workflows/tests.yaml)
+
+
+
+
 # ARM assembly practice repository
 Practice exercises to learn ARM assembly code.
 
